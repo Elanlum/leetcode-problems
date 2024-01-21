@@ -1,4 +1,4 @@
-package main.problem_100;
+package main.problem_100_Same_Tree;
 
 public class TreeNode {
     int val;
