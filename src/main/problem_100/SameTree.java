@@ -1,4 +1,4 @@
-package main.problem_100_Same_Tree;
+package main.problem_100;
 
 
 public class SameTree {

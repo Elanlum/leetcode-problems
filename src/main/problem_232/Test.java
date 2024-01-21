@@ -1,4 +1,4 @@
-package main.problem_232_Queue_Stacks;
+package main.problem_232;
 
 public class Test {
 

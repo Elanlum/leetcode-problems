@@ -1,4 +1,4 @@
-package main.problem_232_Queue_Stacks;
+package main.problem_232;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -12,29 +12,29 @@ public class MyQueue {
         stack2 = new ArrayDeque<>();
     }
 
-    void push(Deque<Integer> top_ref, int new_data) {
+    void push(Deque<Integer> topRef, int newData) {
         // Push the data onto the stack
-        top_ref.push(new_data);
+        topRef.push(newData);
     }
 
     /* Function to pop an item from stack*/
-    int pop(Deque<Integer> top_ref) {
+    int pop(Deque<Integer> topRef) {
         /*If stack is empty then error */
-        if (top_ref.isEmpty()) {
+        if (topRef.isEmpty()) {
             return -1;
         }
 
         // pop the data from the stack
-        return top_ref.pop();
+        return topRef.pop();
     }
 
-    static int peek(Deque<Integer> top_ref) {
-        if (top_ref.isEmpty()) {
+    static int peek(Deque<Integer> topRef) {
+        if (topRef.isEmpty()) {
             return -1;
         }
 
         // pop the data from the stack
-        return top_ref.peek();
+        return topRef.peek();
     }
 
     public void push(int x) {
