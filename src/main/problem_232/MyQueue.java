@@ -3,70 +3,39 @@ package main.problem_232;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+//https://leetcode.com/problems/implement-queue-using-stacks/
 public class MyQueue {
-    Deque<Integer> stack1;
-    Deque<Integer> stack2;
+    Deque<Integer> inputStack;
+    Deque<Integer> outputStack;
 
     public MyQueue() {
-        stack1 = new ArrayDeque<>();
-        stack2 = new ArrayDeque<>();
-    }
-
-    void push(Deque<Integer> topRef, int newData) {
-        // Push the data onto the stack
-        topRef.push(newData);
-    }
-
-    /* Function to pop an item from stack*/
-    int pop(Deque<Integer> topRef) {
-        /*If stack is empty then error */
-        if (topRef.isEmpty()) {
-            return -1;
-        }
-
-        // pop the data from the stack
-        return topRef.pop();
-    }
-
-    static int peek(Deque<Integer> topRef) {
-        if (topRef.isEmpty()) {
-            return -1;
-        }
-
-        // pop the data from the stack
-        return topRef.peek();
+        inputStack = new ArrayDeque<>();
+        outputStack = new ArrayDeque<>();
     }
 
     public void push(int x) {
-        push(stack1, x);
+        inputStack.push(x);
     }
 
     public int pop() {
-        if (checkIfNotEmptyAndMove()) return -1;
-        return pop(stack2);
+        rearrange();
+        return outputStack.isEmpty() ? -1 : outputStack.pop();
     }
 
     public int peek() {
-        if (checkIfNotEmptyAndMove()) return -1;
-        return peek(stack2);
-    }
-
-    private boolean checkIfNotEmptyAndMove() {
-        if (stack1.isEmpty() && stack2.isEmpty()) {
-            return true;
-        }
-
-        if (stack2.isEmpty()) {
-            while (!stack1.isEmpty()) {
-                int y;
-                y = pop(stack1);
-                push(stack2, y);
-            }
-        }
-        return false;
+        rearrange();
+        return outputStack.isEmpty()? -1 : outputStack.peek();
     }
 
     public boolean empty() {
-        return stack1.isEmpty() && stack2.isEmpty();
+        return inputStack.isEmpty() && outputStack.isEmpty();
+    }
+
+    private void rearrange() {
+        if (outputStack.isEmpty()) {
+            while (!inputStack.isEmpty()) {
+                outputStack.push(inputStack.pop());
+            }
+        }
     }
 }
