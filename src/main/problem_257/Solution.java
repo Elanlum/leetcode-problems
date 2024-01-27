@@ -6,6 +6,7 @@ import java.util.List;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+//https://leetcode.com/problems/binary-tree-paths/description/
 public class Solution {
 
     public List<String> binaryTreePaths(TreeNode root) {
@@ -18,29 +19,34 @@ public class Solution {
         }
 
         if (nonNull(root.left)) {
-            search(paths, String.valueOf(root.val), root.left);
+            StringBuilder sb = new StringBuilder();
+            sb.append(root.val);
+            search(paths, sb, root.left);
         }
 
         if (nonNull(root.right)) {
-            search(paths, String.valueOf(root.val), root.right);
+            StringBuilder sb = new StringBuilder();
+            sb.append(root.val);
+            search(paths, sb, root.right);
         }
 
         return paths;
     }
 
-    public void search(List<String> res, String currentPath, TreeNode node) {
-        currentPath += "->" + node.val;
+    public void search(List<String> res, StringBuilder sb, TreeNode node) {
+        sb.append("->");
+        sb.append(node.val);
 
         if (isNull(node.left) && isNull(node.right)) {
-            res.add(currentPath);
+            res.add(sb.toString());
         }
 
         if (nonNull(node.left)) {
-            search(res, currentPath, node.left);
+            search(res, new StringBuilder(sb), node.left);
         }
 
         if (nonNull(node.right)) {
-            search(res, currentPath, node.right);
+            search(res, new StringBuilder(sb), node.right);
         }
     }
 }
