@@ -3,6 +3,7 @@ package main.problem_234;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+//https://leetcode.com/problems/palindrome-linked-list/description/
 public class SolutionArrays {
 
     public static boolean isPalindrome(ListNode head) {
