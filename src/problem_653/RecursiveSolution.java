@@ -22,7 +22,7 @@ public class RecursiveSolution {
         return findTarget(root.left, k) || findTarget(root.right, k);
     }
 
-    private static TreeNode binarySearch(TreeNode node, int find) {
+    private TreeNode binarySearch(TreeNode node, int find) {
         if (node == null) {
             return null;
         }

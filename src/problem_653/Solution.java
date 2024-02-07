@@ -1,29 +1,60 @@
 package problem_653;
 
-import java.util.HashSet;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Solution {
 
-    private final HashSet<Integer> set = new HashSet<>();
+    private TreeNode globalRoot = null;
 
     public boolean findTarget(TreeNode root, int k) {
         if (root == null) {
             return false;
         }
 
-        int find = k - root.val;
-
-        if (set.contains(root.val)) {
-            return true;
+        if (globalRoot == null) {
+            globalRoot = root;
         }
 
-        set.add(find);
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.push(root);
 
-        if (findTarget(root.left, k)) {
-            return true;
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+
+            int find = k - node.val;
+
+            TreeNode found = binarySearch(globalRoot, find);
+
+            if (found != null && found != root) {
+                return true;
+            }
+
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+
+            if (node.left != null) {
+                stack.push(node.left);
+            }
         }
 
-        return findTarget(root.right, k);
+        return false;
     }
 
+    private TreeNode binarySearch(TreeNode node, int find) {
+        if (node == null) {
+            return null;
+        }
+
+        if (find < node.val) {
+            return binarySearch(node.left, find);
+        }
+
+        if (find > node.val) {
+            return binarySearch(node.right, find);
+        }
+
+        return node;
+    }
 }
