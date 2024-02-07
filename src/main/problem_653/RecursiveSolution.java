@@ -1,4 +1,4 @@
-package problem_653;
+package main.problem_653;
 
 public class RecursiveSolution {
 
