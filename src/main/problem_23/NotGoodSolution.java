@@ -1,6 +1,7 @@
 package main.problem_23;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class NotGoodSolution {
@@ -17,17 +18,13 @@ public class NotGoodSolution {
                 continue;
             }
 
-            List<Integer> result = new ArrayList<>();
-
             while (listNode != null) {
-                result.add(listNode.val);
+                total.add(listNode.val);
                 listNode = listNode.next;
             }
-
-            total.addAll(result);
         }
 
-        total.sort(Integer::compareTo);
+        Collections.sort(total);
 
         return reconstruct(total);
     }
