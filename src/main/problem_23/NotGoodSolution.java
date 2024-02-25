@@ -35,39 +35,16 @@ public class NotGoodSolution {
             return new ListNode(list.get(0));
         }
 
-        ListNode result = null;
-        ListNode next = null;
-        ListNode tmpTail = null;
+        ListNode result = new ListNode();
+        ListNode last = null;
+        ListNode next = result;
+
         for (Integer val : list) {
-
-            if (result == null) {
-                tmpTail = new ListNode();
-                result = new ListNode(val, tmpTail);
-            } else {
-                next = tmpTail;
-                next.val = val;
-                tmpTail = new ListNode();
-                next.next = tmpTail;
-            }
-
+           last = new ListNode(val);
+           next.next = last;
+           next = last;
         }
 
-        // null last element
-        if (next != null) {
-            next.next = null;
-        }
-        return result;
-    }
-
-
-    public static void main(String[] args) {
-
-        ListNode zero = null;
-        ListNode one = new ListNode(1, null);
-        ListNode[] nodes = {zero, one};
-
-        ListNode res = mergeKLists(nodes);
-
-        System.out.println("OK");
+        return result.next;
     }
 }
