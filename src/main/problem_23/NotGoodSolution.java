@@ -36,13 +36,11 @@ public class NotGoodSolution {
         }
 
         ListNode result = new ListNode();
-        ListNode last = null;
-        ListNode next = result;
+        ListNode last = result;
 
         for (Integer val : list) {
-           last = new ListNode(val);
-           next.next = last;
-           next = last;
+           last.next = new ListNode(val);
+           last = last.next;
         }
 
         return result.next;
